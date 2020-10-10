@@ -15,14 +15,14 @@
 #' @export
 xwalk_00_10 <- function(census_data, tractID){
   library(tidyverse)
-
   tractID <- enquo(tractID)
 
   # change tract ID name
-  census_data <- census_data %>% rename(trtid00 = tractID)
+  census_data <- census_data %>% rename(trtid00 = !!quo_name(tractID))
 
   # FIPS filter from Census/ACS data
-  fips_filter <- paste(census_data %>% select(!! tractID), collapse = "|")
+  fips_filter <-
+    paste(census_data %>% select(trtid00) %>% pull(), collapse = "|")
 
   # Filter crosswalk data by relevant FIPS (reduces interpolation time)
   crosswalk_filter <-
@@ -52,7 +52,13 @@ xwalk_00_10 <- function(census_data, tractID){
     # group by 2010 tracts
     group_by(trtid10) %>%
     # sum up all variables
-    summarise_all(sum)
+    summarise_all(sum) %>%
+    # ungroup
+    ungroup() %>%
+    # select out unwanted weight vars
+    select(-c(weight_00:changetype_00)) %>%
+    # remove the "_00" suffix
+    rename_with(~str_remove(.x, "_00$"), ends_with("_00"))
 
   return(census_data_xwalk)
 }
