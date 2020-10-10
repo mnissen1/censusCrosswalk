@@ -1,13 +1,12 @@
 #' Crosswalk tracts from 2000 to 2010 boundaries
 #'
-#' This function loads ACS/Census with 2000 tract boundaries, as well as weights
-#' from the LTBD
+#' This function takes ACS/Census data with 2000 tract boundaries, and loads in
+#' weights from the LTBD
 #' (https://s4.ad.brown.edu/projects/diversity/Researcher/LTBDDload/DataList.aspx).
 #' It assumes that all numeric values in the specified ACS/Census data are to be
 #' crosswalked. If this is not the case, those variables should be filtered
 #' prior to using the function.
-#' It outputs the original data crosswalked to 2010 boundaries, with the suffix
-#' _00 to indicate 2000 boundary data.
+#' It outputs the original data crosswalked to 2010 boundaries.
 #'
 #' @param census_data An R object containing ACS/Census data
 #' @param tractID variable name that contains the tract ID
