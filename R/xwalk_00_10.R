@@ -4,16 +4,16 @@
 #' from the LTBD
 #' (https://s4.ad.brown.edu/projects/diversity/Researcher/LTBDDload/DataList.aspx).
 #' It assumes that all numeric values in the specified ACS/Census data are to be
-#' crosswalked, but this can be adjusted.
+#' crosswalked. If this is not the case, those variables should be filtered
+#' prior to using the function.
 #' It outputs the original data crosswalked to 2010 boundaries, with the suffix
 #' _00 to indicate 2000 boundary data.
 #'
 #' @param census_data An R object containing ACS/Census data
 #' @param tractID variable name that contains the tract ID
-#' @param vars ACS/Census variables to crosswalk (defaults to all numeric)
 #' @return Crosswalked ACS/Census data (2010 boundaries)
 #' @export
-xwalk_00_10 <- function(census_data, tractID, vars = tidyselect::where(is.numeric)){
+xwalk_00_10 <- function(census_data, tractID){
   library(tidyverse)
 
   tractID <- enquo(tractID)
@@ -40,7 +40,7 @@ xwalk_00_10 <- function(census_data, tractID, vars = tidyselect::where(is.numeri
     mutate(
       across(
         # select all Census/ACS data
-        all_of(vars),
+        where(is.numeric),
         # find value of data multiplied by weight
         ~ . * weight,
         # attach name in the following pattern
