@@ -4,24 +4,22 @@
 \alias{xwalk_00_10}
 \title{Crosswalk tracts from 2000 to 2010 boundaries}
 \usage{
-xwalk_00_10(census_data, tractID, vars = tidyselect::where(is.numeric))
+xwalk_00_10(census_data, tractID)
 }
 \arguments{
-\item{census_data}{An R object containing ACS/Census data}
+\item{census_data}{An R object containing ACS/Census data w/ 2000 boundaries}
 
 \item{tractID}{variable name that contains the tract ID}
-
-\item{vars}{ACS/Census variables to crosswalk (defaults to all numeric)}
 }
 \value{
 Crosswalked ACS/Census data (2010 boundaries)
 }
 \description{
-This function loads ACS/Census with 2000 tract boundaries, as well as weights
-from the LTBD
+This function takes ACS/Census data with 2000 tract boundaries, and loads in
+weights from the LTBD
 (https://s4.ad.brown.edu/projects/diversity/Researcher/LTBDDload/DataList.aspx).
 It assumes that all numeric values in the specified ACS/Census data are to be
-crosswalked, but this can be adjusted.
-It outputs the original data crosswalked to 2010 boundaries, with the suffix
-_00 to indicate 2000 boundary data.
+crosswalked. If this is not the case, those variables should be filtered
+prior to using the function.
+It outputs the original data crosswalked to 2010 boundaries.
 }

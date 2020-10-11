@@ -8,7 +8,7 @@
 #' prior to using the function.
 #' It outputs the original data crosswalked to 2010 boundaries.
 #'
-#' @param census_data An R object containing ACS/Census data
+#' @param census_data An R object containing ACS/Census data w/ 2000 boundaries
 #' @param tractID variable name that contains the tract ID
 #' @return Crosswalked ACS/Census data (2010 boundaries)
 #' @export

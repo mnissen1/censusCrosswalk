@@ -6,7 +6,7 @@ Authors@R:
            family = "Alvarez-Nissen",
            role = c("aut", "cre"),
            email = "matt.nissen1@gmail.com")
-Description: This package takes ACS/Census data at the tract level with 2000  boundaries and crosswalks it to 2010 boundaries. Also requires the user to specify the variable name for tract ID. Relies on weights from the Brown University LTBD.
+Description: This package takes ACS/Census data at the tract level to 2010 boundaries. Relies on weights from the Brown University LTBD.
 License: 
 Encoding: UTF-8
 LazyData: true
