@@ -4,22 +4,27 @@
 \alias{xwalk_90_10}
 \title{Crosswalk tracts from 1990 to 2010 boundaries}
 \usage{
-xwalk_90_10(census_data, tractID)
+xwalk_90_10(census_data, tractID, vars = names(census_data))
 }
 \arguments{
-\item{census_data}{An R object containing ACS/Census data w/ 1990 boundaries}
+\item{census_data}{An R table containing ACS/Census data w/ 1990 boundaries}
 
 \item{tractID}{variable name that contains the tract ID}
+
+\item{vars}{Census/ACS variables to crosswalk. Defaults to all numeric
+variables, but can be adjusted. Custom variables must be a single string
+or a list of strings.}
 }
 \value{
-Crosswalked ACS/Census data (2010 boundaries)
+Crosswalked selected ACS/Census data (2010 boundaries, defaults to
+all numeric data)
 }
 \description{
 This function takes ACS/Census data with 1990 tract boundaries, and loads in
 weights from the LTBD
 (https://s4.ad.brown.edu/projects/diversity/Researcher/LTBDDload/DataList.aspx).
-It assumes that all numeric values in the specified ACS/Census data are to be
-crosswalked. If this is not the case, those variables should be filtered
-prior to using the function.
+It assumes that you want all variables to be crosswalked, and includes a filter
+to only choose numeric type variables. If you want to only crosswalk specific
+variables, specify this in the vars argument (must be numeric).
 It outputs the original data crosswalked to 2010 boundaries.
 }
